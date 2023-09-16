@@ -1,13 +1,5 @@
 use bevy::prelude::*;
 use bevy_ecs_ldtk::prelude::*;
-use bevy_asset_loader::prelude::*;
-
-/*#[derive(AssetCollection, Resource)]
-pub struct ImageAssets {
-    #[asset(path = "map.ldtk")]
-    map: Handle<LdtkAsset>,
-}*/
-
 
 pub fn load_background(
     mut commands: Commands,
@@ -56,9 +48,8 @@ pub fn load_map(
     mut commands: Commands,
     images: Res<AssetServer>
 ) {
-
     commands.spawn(LdtkWorldBundle {
-        ldtk_handle: images.load("map1.ldtk"),
+        ldtk_handle: images.load("map.ldtk"),
         transform: Transform::from_xyz(-640.0, -360.0, 0.0),
         ..default()
     });

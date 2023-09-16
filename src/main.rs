@@ -2,7 +2,6 @@ mod world;
 
 use bevy::prelude::*;
 use::bevy_ecs_ldtk::prelude::*;
-use::bevy_asset_loader::prelude::*;
 use world::*;
 
 fn main() {
