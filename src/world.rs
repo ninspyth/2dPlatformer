@@ -6,7 +6,6 @@ pub fn load_background(
     asset_server: Res<AssetServer>
 ) {
     //spawn a camera
-    commands.spawn(Camera2dBundle::default());
 
     //loading the background
     commands.spawn(SpriteBundle {
@@ -49,8 +48,20 @@ pub fn load_map(
     images: Res<AssetServer>
 ) {
     commands.spawn(LdtkWorldBundle {
-        ldtk_handle: images.load("map.ldtk"),
+        ldtk_handle: images.load("my_map.ldtk"),
         transform: Transform::from_xyz(-640.0, -360.0, 0.0),
         ..default()
     });
+/*     commands.spawn(LdtkWorldBundle {
+        ldtk_handle: images.load("map.ldtk"),
+        transform: Transform::from_xyz(-640.0, -360.0, 0.0),
+        ..default()
+    }); */
+}
+
+pub fn load_camara(
+    mut commands: Commands
+) {
+    commands.spawn(Camera2dBundle::default());
+
 }
