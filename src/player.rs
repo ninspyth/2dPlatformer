@@ -1,3 +1,4 @@
+#[allow(dead_code, unused_variables)]
 use bevy::prelude::*;
 
 const PLAYER_SPEED: f32 = 150.0;
@@ -24,20 +25,26 @@ pub struct AnimationIndices {
 #[derive(Component, Deref, DerefMut)]
 pub struct AnimationTimer(Timer);
 
+pub struct PlayerStateSprite {
+    sprite: Handle<TextureAtlas>
+}
+
+#[derive(Component)]
 pub enum PlayerState {
-    Attack,
-    Idle,
-    Jump,
-    Death,
-    Roll,
-    Run,
-    Sheild
+    Attack(PlayerStateSprite),
+    Idle(PlayerStateSprite),
+    Jump(PlayerStateSprite),
+    Death(PlayerStateSprite),
+    Roll(PlayerStateSprite),
+    Run(PlayerStateSprite),
+    Sheild(PlayerStateSprite)
 }
 
 pub fn animate_player(
     time: Res<Time>,
-    mut player_q: Query<(&AnimationIndices, &mut AnimationTimer, &mut TextureAtlasSprite), With<Player>>
+    mut player_q: Query<(&AnimationIndices, &mut AnimationTimer, &mut TextureAtlasSprite), With<Player>>,
 ) {
+    //idle animation
     for (idx, mut timer, mut sprite) in player_q.iter_mut(){
         timer.tick(time.delta());
         if timer.just_finished() {
@@ -49,6 +56,7 @@ pub fn animate_player(
             }
         }
     }
+    
 }
 
 
